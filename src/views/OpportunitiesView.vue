@@ -49,7 +49,7 @@ const getCategoryColor = (category: string) => {
 <template>
   <div class="min-h-screen bg-background pb-24">
     <div class="p-6 pt-8">
-      <h1 class="text-2xl font-bold text-primary mb-6">Opportunities Hub</h1>
+      <h1 class="text-2xl font-bold text-white mb-6">Opportunities Hub</h1>
 
       <!-- Categories -->
       <div class="flex gap-2 overflow-x-auto pb-4 mb-2 scrollbar-hide">
@@ -69,7 +69,7 @@ const getCategoryColor = (category: string) => {
       <!-- Opportunity List -->
       <div v-if="opportunityStore.loading" class="text-center py-12">
         <div class="animate-spin w-8 h-8 border-2 border-accent border-t-transparent rounded-full mx-auto mb-4"></div>
-        <p class="text-secondary">Finding opportunities...</p>
+        <p class="text-gray-300">Finding opportunities...</p>
       </div>
 
       <div v-else-if="filteredOpportunities.length === 0" class="text-center py-12 bg-surface rounded-xl border border-primary/5">

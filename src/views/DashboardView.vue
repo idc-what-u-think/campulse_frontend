@@ -17,8 +17,8 @@ const newOpportunities = 5;
     <div class="p-6 pt-8">
       <div class="flex justify-between items-center mb-6">
         <div>
-          <h1 class="text-2xl font-bold text-primary">Hello, {{ user?.full_name?.split(' ')[0] || 'Student' }} 👋</h1>
-          <p class="text-secondary text-sm">Let's make today productive.</p>
+          <h1 class="text-2xl font-bold text-white">Hello, {{ user?.full_name?.split(' ')[0] || 'Student' }} 👋</h1>
+          <p class="text-gray-300 text-sm">Let's make today productive.</p>
         </div>
         <div class="w-10 h-10 rounded-full bg-surface border border-primary/10 flex items-center justify-center text-primary font-bold">
           {{ user?.full_name?.charAt(0) || 'S' }}
@@ -38,7 +38,7 @@ const newOpportunities = 5;
       </div>
 
       <!-- Quick Actions -->
-      <h2 class="text-lg font-semibold text-primary mb-4">Quick Access</h2>
+      <h2 class="text-lg font-semibold text-white mb-4">Quick Access</h2>
       <div class="space-y-4">
         <router-link to="/planner" class="block bg-surface p-4 rounded-xl border border-primary/5 hover:border-accent/50 transition-all group">
           <div class="flex items-center gap-4">

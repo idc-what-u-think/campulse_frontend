@@ -77,7 +77,7 @@ const formatDate = (dateString: string) => {
   <div class="min-h-screen bg-background pb-24">
     <div class="p-6 pt-8">
       <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-bold text-primary">Academic Planner</h1>
+        <h1 class="text-2xl font-bold text-white">Academic Planner</h1>
         <button 
           @click="showAddModal = true"
           class="w-10 h-10 rounded-full bg-accent text-primary flex items-center justify-center shadow-lg shadow-accent/20 hover:brightness-95 transition-colors"
@@ -89,7 +89,7 @@ const formatDate = (dateString: string) => {
       <!-- Task List -->
       <div v-if="taskStore.loading && taskStore.tasks.length === 0" class="text-center py-12">
         <div class="animate-spin w-8 h-8 border-2 border-accent border-t-transparent rounded-full mx-auto mb-4"></div>
-        <p class="text-secondary">Loading tasks...</p>
+        <p class="text-gray-300">Loading tasks...</p>
       </div>
 
       <div v-else-if="taskStore.tasks.length === 0" class="text-center py-12 bg-surface rounded-xl border border-primary/5">

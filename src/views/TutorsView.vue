@@ -20,7 +20,7 @@ const handleSearch = () => {
 <template>
   <div class="min-h-screen bg-background pb-24">
     <div class="p-6 pt-8">
-      <h1 class="text-2xl font-bold text-primary mb-6">Find a Tutor</h1>
+      <h1 class="text-2xl font-bold text-white mb-6">Find a Tutor</h1>
 
       <!-- Search Bar -->
       <div class="relative mb-6">
@@ -46,7 +46,7 @@ const handleSearch = () => {
       <!-- Tutor List -->
       <div v-if="tutorStore.loading" class="text-center py-12">
         <div class="animate-spin w-8 h-8 border-2 border-accent border-t-transparent rounded-full mx-auto mb-4"></div>
-        <p class="text-secondary">Searching for tutors...</p>
+        <p class="text-gray-300">Searching for tutors...</p>
       </div>
 
       <div v-else-if="tutorStore.tutors.length === 0" class="text-center py-12 bg-surface rounded-xl border border-primary/5">
