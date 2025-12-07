@@ -1,7 +1,6 @@
-```javascript
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { Calendar, Briefcase, GraduationCap, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -46,7 +45,7 @@ const Dashboard = () => {
             <div
               key={feature.path}
               className="dashboard-card animate-slideInLeft"
-              style={{ animationDelay: `${ index * 0.1 } s` }}
+              style={{ animationDelay: `${index * 0.1}s` }}
               onClick={() => navigate(feature.path)}
             >
               <div className="card-icon">{feature.icon}</div>
@@ -64,4 +63,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-```

@@ -1,66 +1,103 @@
 import axios from 'axios';
 
-// Base API URL - adjust if your backend runs on a different port
+// Base API URL
 const API_BASE_URL = 'http://localhost:8000/api/v1';
 
-// Create axios instance with default config
-const api = axios.create({
-    baseURL: API_BASE_URL,
-    headers: {
-        'Content-Type': 'application/json',
+// MOCK DATA FOR SIMULATION
+const MOCK_TASKS = [
+    {
+        id: 1,
+        title: 'Complete Math Assignment',
+        description: 'Solve problems 1-10 in Chapter 5',
+        task_type: 'assignment',
+        priority: 'high',
+        due_date: new Date(Date.now() + 86400000).toISOString(),
+        is_done: false
     },
-});
-
-// Request interceptor to add auth token
-api.interceptors.request.use(
-    (config) => {
-        const token = localStorage.getItem('campulse_token');
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
-        }
-        return config;
+    {
+        id: 2,
+        title: 'Physics Midterm',
+        description: 'Topics: Mechanics and Thermodynamics',
+        task_type: 'test',
+        priority: 'high',
+        due_date: new Date(Date.now() + 172800000).toISOString(),
+        is_done: false
     },
-    (error) => {
-        return Promise.reject(error);
+    {
+        id: 3,
+        title: 'CSC 301 Class',
+        description: 'Data Structures and Algorithms',
+        task_type: 'class',
+        priority: 'medium',
+        due_date: new Date(Date.now() + 3600000).toISOString(),
+        is_done: true
     }
-);
+];
 
-// Response interceptor for error handling
-api.interceptors.response.use(
-    (response) => response,
-    (error) => {
-        if (error.response?.status === 401) {
-            // Token expired or invalid
-            localStorage.removeItem('campulse_token');
-            localStorage.removeItem('campulse_user');
-            window.location.href = '/login';
-        }
-        return Promise.reject(error);
+const MOCK_OPPORTUNITIES = [
+    {
+        id: 1,
+        title: 'Frontend Developer Intern',
+        description: 'Remote internship opportunity for React developers. Build modern web applications.',
+        category: 'gig',
+        deadline: '2025-12-31',
+        link: 'https://example.com'
+    },
+    {
+        id: 2,
+        title: 'MTN Foundation Scholarship',
+        description: 'Annual scholarship for high-performing science and technology students.',
+        category: 'scholarship',
+        deadline: '2025-11-30',
+        link: 'https://example.com'
+    },
+    {
+        id: 3,
+        title: '50% Off Laptop Repair',
+        description: 'Get half price on screen replacements at TechHub Yaba.',
+        category: 'deal',
+        deadline: '2025-10-15',
+        link: 'https://example.com'
     }
-);
+];
 
-// ========================================
-// AUTHENTICATION ENDPOINTS
-// ========================================
-
-export const authAPI = {
-    // POST /api/v1/auth/signup
-    signup: async (userData) => {
-        const response = await api.post('/auth/signup', userData);
-        return response.data;
+const MOCK_TUTORS = [
+    {
+        id: 1,
+        name: 'David Okon',
+        courses: ['MTH 101', 'PHY 101'],
+        rating: 4.8,
+        whatsapp: '2348012345678',
+        bio: 'Experienced math tutor with 3 years of teaching experience. I simplify complex concepts.',
+        experience: '3 years tutoring undergraduates'
     },
-
-    // POST /api/v1/auth/login
-    login: async (email, password) => {
-        const response = await api.post('/auth/login', { email, password });
-        return response.data;
+    {
+        id: 2,
+        name: 'Sarah Adebayo',
+        courses: ['CSC 201', 'CSC 202'],
+        rating: 4.9,
+        whatsapp: '2348087654321',
+        bio: 'Computer Science major. I can help you understand algorithms and data structures.',
+        experience: 'Dean\'s list student, 2 years tutoring'
     },
+    {
+        id: 3,
+        name: 'Emmanuel Chinedu',
+        courses: ['CHM 101'],
+        rating: 4.5,
+        whatsapp: '2348055555555',
+        bio: 'Chemistry enthusiast. Let\'s ace that exam together!',
+        experience: '1 year tutoring'
+    }
+];
 
-    // GET /api/v1/auth/me
-    getCurrentUser: async () => {
-        const response = await api.get('/auth/me');
-        return response.data;
-    },
+// SIMULATION HELPER
+const simulateDelay = (data) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(data);
+        }, 800);
+    });
 };
 
 // ========================================
@@ -68,28 +105,26 @@ export const authAPI = {
 // ========================================
 
 export const tasksAPI = {
-    // GET /tasks - List all tasks
-    getAllTasks: async () => {
-        const response = await api.get('/tasks');
-        return response.data;
-    },
-
-    // POST /tasks - Create new task
+    getAllTasks: async () => simulateDelay(MOCK_TASKS),
     createTask: async (taskData) => {
-        const response = await api.post('/tasks', taskData);
-        return response.data;
+        const newTask = { id: Date.now(), ...taskData, is_done: false };
+        MOCK_TASKS.push(newTask);
+        return simulateDelay(newTask);
     },
-
-    // PATCH /tasks/{id} - Update task
     updateTask: async (id, taskData) => {
-        const response = await api.patch(`/tasks/${id}`, taskData);
-        return response.data;
+        const index = MOCK_TASKS.findIndex(t => t.id === id);
+        if (index !== -1) {
+            MOCK_TASKS[index] = { ...MOCK_TASKS[index], ...taskData };
+            return simulateDelay(MOCK_TASKS[index]);
+        }
+        return simulateDelay(null);
     },
-
-    // DELETE /tasks/{id} - Delete task
     deleteTask: async (id) => {
-        const response = await api.delete(`/tasks/${id}`);
-        return response.data;
+        const index = MOCK_TASKS.findIndex(t => t.id === id);
+        if (index !== -1) {
+            MOCK_TASKS.splice(index, 1);
+        }
+        return simulateDelay({ success: true });
     },
 };
 
@@ -98,24 +133,17 @@ export const tasksAPI = {
 // ========================================
 
 export const opportunitiesAPI = {
-    // GET /opportunities - Browse opportunities with optional category filter
     getOpportunities: async (category = null) => {
-        const params = category ? { category } : {};
-        const response = await api.get('/opportunities', { params });
-        return response.data;
+        if (category) {
+            return simulateDelay(MOCK_OPPORTUNITIES.filter(o => o.category === category));
+        }
+        return simulateDelay(MOCK_OPPORTUNITIES);
     },
-
-    // GET /opportunities/{id} - Get opportunity details
     getOpportunityById: async (id) => {
-        const response = await api.get(`/opportunities/${id}`);
-        return response.data;
+        const opp = MOCK_OPPORTUNITIES.find(o => o.id === id);
+        return simulateDelay(opp);
     },
-
-    // POST /opportunities/{id}/bookmark - Bookmark opportunity
-    bookmarkOpportunity: async (id) => {
-        const response = await api.post(`/opportunities/${id}/bookmark`);
-        return response.data;
-    },
+    bookmarkOpportunity: async (id) => simulateDelay({ success: true }),
 };
 
 // ========================================
@@ -123,19 +151,31 @@ export const opportunitiesAPI = {
 // ========================================
 
 export const tutorsAPI = {
-    // GET /tutors - List tutors with optional course code filter
     getTutors: async (courseCode = null) => {
-        const params = courseCode ? { course_code: courseCode } : {};
-        const response = await api.get('/tutors', { params });
-        return response.data;
+        if (courseCode) {
+            const lowerCode = courseCode.toLowerCase();
+            return simulateDelay(MOCK_TUTORS.filter(t =>
+                t.courses.some(c => c.toLowerCase().includes(lowerCode))
+            ));
+        }
+        return simulateDelay(MOCK_TUTORS);
     },
-
-    // GET /tutors/{id} - Get tutor details
     getTutorById: async (id) => {
-        const response = await api.get(`/tutors/${id}`);
-        return response.data;
+        const tutor = MOCK_TUTORS.find(t => t.id === id);
+        return simulateDelay(tutor);
     },
 };
 
-// Export the configured axios instance for custom requests
-export default api;
+export const authAPI = {
+    // These are handled by AuthContext directly in simulation mode
+    signup: async () => { },
+    login: async () => { },
+    getCurrentUser: async () => { },
+};
+
+export default {
+    tasks: tasksAPI,
+    opportunities: opportunitiesAPI,
+    tutors: tutorsAPI,
+    auth: authAPI
+};

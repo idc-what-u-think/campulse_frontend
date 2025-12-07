@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { authAPI } from '../services/api';
 
 const AuthContext = createContext(null);
 
@@ -17,60 +16,86 @@ export const AuthProvider = ({ children }) => {
 
     // Check for existing user on mount
     useEffect(() => {
-        const initAuth = async () => {
-            const token = localStorage.getItem('campulse_token');
-            if (token) {
-                try {
-                    // Get current user from backend
-                    const userData = await authAPI.getCurrentUser();
-                    setUser(userData);
-                } catch (error) {
-                    console.error('Failed to get current user:', error);
-                    localStorage.removeItem('campulse_token');
-                    localStorage.removeItem('campulse_user');
-                }
+        const storedUser = localStorage.getItem('campulse_user');
+        if (storedUser) {
+            try {
+                setUser(JSON.parse(storedUser));
+            } catch (error) {
+                localStorage.removeItem('campulse_user');
             }
-            setLoading(false);
-        };
-
-        initAuth();
+        }
+        setLoading(false);
     }, []);
 
     const login = async (email, password) => {
-        try {
-            // Call backend API
-            const response = await authAPI.login(email, password);
+        // Simulate API call
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // Check if user exists in localStorage (from signup)
+                const users = JSON.parse(localStorage.getItem('campulse_users') || '[]');
+                const foundUser = users.find(u => u.email === email && u.password === password);
 
-            // Store token and user data
-            localStorage.setItem('campulse_token', response.access_token);
-            localStorage.setItem('campulse_user', JSON.stringify(response.user));
-            setUser(response.user);
-
-            return response.user;
-        } catch (error) {
-            throw new Error(error.response?.data?.detail || 'Login failed');
-        }
+                // For testing purposes, also allow a default test user if no users exist
+                if (foundUser) {
+                    const { password, ...userWithoutPassword } = foundUser;
+                    setUser(userWithoutPassword);
+                    localStorage.setItem('campulse_user', JSON.stringify(userWithoutPassword));
+                    resolve(userWithoutPassword);
+                } else if (email === 'test@student.com' && password === 'password123') {
+                    const testUser = {
+                        id: '1',
+                        fullName: 'Test Student',
+                        email: 'test@student.com',
+                        school: 'University of Lagos (UNILAG)',
+                        department: 'Computer Science',
+                        level: '300 Level'
+                    };
+                    setUser(testUser);
+                    localStorage.setItem('campulse_user', JSON.stringify(testUser));
+                    resolve(testUser);
+                } else {
+                    reject(new Error('Invalid email or password'));
+                }
+            }, 1000);
+        });
     };
 
     const signup = async (userData) => {
-        try {
-            // Call backend API
-            const response = await authAPI.signup(userData);
+        // Simulate API call
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // Check if email already exists
+                const users = JSON.parse(localStorage.getItem('campulse_users') || '[]');
+                const emailExists = users.some(u => u.email === userData.email);
 
-            // Store token and user data
-            localStorage.setItem('campulse_token', response.access_token);
-            localStorage.setItem('campulse_user', JSON.stringify(response.user));
-            setUser(response.user);
+                if (emailExists) {
+                    reject(new Error('Email already registered'));
+                    return;
+                }
 
-            return response.user;
-        } catch (error) {
-            throw new Error(error.response?.data?.detail || 'Signup failed');
-        }
+                // Create new user
+                const newUser = {
+                    id: Date.now().toString(),
+                    ...userData,
+                    createdAt: new Date().toISOString()
+                };
+
+                // Save to users array
+                users.push(newUser);
+                localStorage.setItem('campulse_users', JSON.stringify(users));
+
+                // Set as current user (without password)
+                const { password, ...userWithoutPassword } = newUser;
+                setUser(userWithoutPassword);
+                localStorage.setItem('campulse_user', JSON.stringify(userWithoutPassword));
+
+                resolve(userWithoutPassword);
+            }, 1000);
+        });
     };
 
     const logout = () => {
         setUser(null);
-        localStorage.removeItem('campulse_token');
         localStorage.removeItem('campulse_user');
     };
 
