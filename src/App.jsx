@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Navbar from './components/Navbar';
-import LandingPage from './pages/LandingPage';
+import CampulseLanding from './pages/CampulseLanding';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
@@ -65,7 +65,7 @@ function App() {
       <AuthProvider>
         <Routes>
           {/* Landing Page - Always accessible */}
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<CampulseLanding />} />
           
           {/* Public Routes */}
           <Route
