@@ -24,7 +24,8 @@ const CampulseLanding = () => {
   }, []);
 
   const handleGetStarted = () => {
-    navigate('/login');
+    // Navigate to login page
+    window.location.href = '/login';
   };
 
   const teamMembers = {
@@ -258,14 +259,14 @@ const CampulseLanding = () => {
                     Challenge
                   </span>
                 </h2>
-                <div className="gradient-border bg-gradient-to-b from-white/5 to-white/0 rounded-2xl p-8 backdrop-blur-sm">
-                  <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                <div className="gradient-border bg-gray-900/60 border border-green-500/20 rounded-2xl p-8 backdrop-blur-sm">
+                  <p className="text-lg text-gray-200 leading-relaxed mb-6">
                     University life at the University of Ilorin presents students with numerous challenges in managing academics, campus resources, and extracurricular activities. Students struggle to keep track of deadlines, exams, lectures, and events while simultaneously seeking verified information about scholarships, internships, side gigs, and campus services.
                   </p>
-                  <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                  <p className="text-lg text-gray-200 leading-relaxed mb-6">
                     The fragmentation of tools and platforms, including WhatsApp groups, Google Calendar, and personal notes, often leads to missed deadlines, reduced productivity, and increased stress. Moreover, accessing verified opportunities such as scholarships, competitions, and part-time jobs is time-consuming and prone to misinformation.
                   </p>
-                  <p className="text-lg text-gray-300 leading-relaxed">
+                  <p className="text-lg text-gray-200 leading-relaxed">
                     Marketplace activities such as buying and selling books, electronics, and services are informal and lack security or trust. The critical problem is the absence of a centralized, intelligent, and secure student platform that unifies academic management, community engagement, opportunities discovery, and campus services.
                   </p>
                 </div>
@@ -287,8 +288,8 @@ const CampulseLanding = () => {
                     Solution
                   </span>
                 </h2>
-                <div className="gradient-border bg-gradient-to-b from-white/5 to-white/0 rounded-2xl p-8 backdrop-blur-sm mb-12">
-                  <p className="text-lg text-gray-300 leading-relaxed">
+                <div className="gradient-border bg-gray-900/60 border border-green-500/20 rounded-2xl p-8 backdrop-blur-sm mb-12">
+                  <p className="text-lg text-gray-200 leading-relaxed">
                     Campulse is a campus operating system designed to solve these challenges by consolidating productivity tools, community platforms, opportunities marketplaces, and campus services into a single intelligent platform. The solution leverages cloud infrastructure and artificial intelligence to ensure scalability, security, and efficiency.
                   </p>
                 </div>
@@ -320,13 +321,13 @@ const CampulseLanding = () => {
                 <div 
                   data-animate
                   id="feature-1"
-                  className="feature-card gradient-border bg-gradient-to-b from-white/5 to-white/0 rounded-2xl p-8 backdrop-blur-sm"
+                  className="feature-card bg-gray-900/80 border border-green-500/20 rounded-2xl p-8 backdrop-blur-sm"
                   style={visibleSections.has('feature-1') ? { opacity: 1, transform: 'translateY(0)' } : {}}
                 >
                   <h3 className="text-2xl font-semibold text-white mb-4">
                     Academic Management
                   </h3>
-                  <p className="text-gray-400 leading-relaxed">
+                  <p className="text-gray-300 leading-relaxed">
                     Never miss a deadline. Track assignments, exams, and get smart reminders tailored to your schedule. AI-driven personalized study plans help reduce missed deadlines by up to 50%.
                   </p>
                 </div>
@@ -334,13 +335,13 @@ const CampulseLanding = () => {
                 <div 
                   data-animate
                   id="feature-2"
-                  className="feature-card gradient-border bg-gradient-to-b from-white/5 to-white/0 rounded-2xl p-8 backdrop-blur-sm"
+                  className="feature-card bg-gray-900/80 border border-green-500/20 rounded-2xl p-8 backdrop-blur-sm"
                   style={visibleSections.has('feature-2') ? { opacity: 1, transform: 'translateY(0)' } : {}}
                 >
                   <h3 className="text-2xl font-semibold text-white mb-4">
                     Find Opportunities
                   </h3>
-                  <p className="text-gray-400 leading-relaxed">
+                  <p className="text-gray-300 leading-relaxed">
                     Discover scholarships, internships, and side gigs matched to your interests and skills. Get personalized recommendations for verified opportunities all in one place.
                   </p>
                 </div>
@@ -348,13 +349,13 @@ const CampulseLanding = () => {
                 <div 
                   data-animate
                   id="feature-3"
-                  className="feature-card gradient-border bg-gradient-to-b from-white/5 to-white/0 rounded-2xl p-8 backdrop-blur-sm"
+                  className="feature-card bg-gray-900/80 border border-green-500/20 rounded-2xl p-8 backdrop-blur-sm"
                   style={visibleSections.has('feature-3') ? { opacity: 1, transform: 'translateY(0)' } : {}}
                 >
                   <h3 className="text-2xl font-semibold text-white mb-4">
                     Campus Marketplace
                   </h3>
-                  <p className="text-gray-400 leading-relaxed">
+                  <p className="text-gray-300 leading-relaxed">
                     Buy and sell textbooks, electronics, and services safely within the student community. Secure transactions with AI-powered fraud detection.
                   </p>
                 </div>
@@ -362,13 +363,13 @@ const CampulseLanding = () => {
                 <div 
                   data-animate
                   id="feature-4"
-                  className="feature-card gradient-border bg-gradient-to-b from-white/5 to-white/0 rounded-2xl p-8 backdrop-blur-sm"
+                  className="feature-card bg-gray-900/80 border border-green-500/20 rounded-2xl p-8 backdrop-blur-sm"
                   style={visibleSections.has('feature-4') ? { opacity: 1, transform: 'translateY(0)' } : {}}
                 >
                   <h3 className="text-2xl font-semibold text-white mb-4">
                     Stay Connected
                   </h3>
-                  <p className="text-gray-400 leading-relaxed">
+                  <p className="text-gray-300 leading-relaxed">
                     Get updates on campus events, club activities, and announcements all in one place. Centralized communication reduces misinformation and keeps you informed.
                   </p>
                 </div>
@@ -391,9 +392,9 @@ const CampulseLanding = () => {
                   </span>
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6">
-                  <div className="gradient-border bg-gradient-to-b from-white/5 to-white/0 rounded-xl p-6 backdrop-blur-sm">
+                  <div className="gradient-border bg-gray-900/60 border border-green-500/20 rounded-xl p-6 backdrop-blur-sm">
                     <h3 className="text-xl font-bold text-white mb-3">For Students</h3>
-                    <ul className="space-y-2 text-gray-300">
+                    <ul className="space-y-2 text-gray-200">
                       <li>• Centralized access to all campus resources</li>
                       <li>• AI-driven reminders reduce missed deadlines by 50%</li>
                       <li>• Personalized opportunity recommendations</li>
@@ -401,9 +402,9 @@ const CampulseLanding = () => {
                     </ul>
                   </div>
                   
-                  <div className="gradient-border bg-gradient-to-b from-white/5 to-white/0 rounded-xl p-6 backdrop-blur-sm">
+                  <div className="gradient-border bg-gray-900/60 border border-amber-500/20 rounded-xl p-6 backdrop-blur-sm">
                     <h3 className="text-xl font-bold text-white mb-3">For Administration</h3>
-                    <ul className="space-y-2 text-gray-300">
+                    <ul className="space-y-2 text-gray-200">
                       <li>• Real-time analytics dashboards</li>
                       <li>• Centralized communication platform</li>
                       <li>• Insights into student engagement and trends</li>
@@ -460,7 +461,7 @@ const CampulseLanding = () => {
                   started it all
                 </span>
               </h2>
-              <div className="max-w-2xl mx-auto gradient-border bg-gradient-to-b from-white/5 to-white/0 rounded-2xl p-8 backdrop-blur-sm">
+              <div className="max-w-2xl mx-auto gradient-border bg-gray-900/60 border border-green-500/20 rounded-2xl p-8 backdrop-blur-sm">
                 <div className="flex flex-col items-center text-center">
                   <div className="w-32 h-32 rounded-full bg-gray-800 mb-6 overflow-hidden border-4 border-green-500/30 shadow-xl">
                     <img 
@@ -477,7 +478,7 @@ const CampulseLanding = () => {
                     </div>
                   </div>
                   <h3 className="text-2xl font-bold mb-4 text-white">{teamMembers.creator.name}</h3>
-                  <p className="text-base text-gray-300 leading-relaxed">{teamMembers.creator.info}</p>
+                  <p className="text-base text-gray-200 leading-relaxed">{teamMembers.creator.info}</p>
                 </div>
               </div>
             </div>
@@ -492,7 +493,7 @@ const CampulseLanding = () => {
               </h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {teamMembers.developers.map((dev, index) => (
-                  <div key={index} className="feature-card gradient-border bg-gradient-to-b from-white/5 to-white/0 rounded-2xl p-6 backdrop-blur-sm">
+                  <div key={index} className="feature-card bg-gray-900/80 border border-amber-500/20 rounded-2xl p-6 backdrop-blur-sm">
                     <div className="flex flex-col items-center text-center">
                       <div className="w-24 h-24 rounded-full bg-gray-800 mb-4 overflow-hidden border-4 border-amber-500/30 shadow-lg">
                         <img 
@@ -509,7 +510,7 @@ const CampulseLanding = () => {
                         </div>
                       </div>
                       <h3 className="text-lg font-bold mb-2 text-white">{dev.name}</h3>
-                      <p className="text-sm text-gray-300 mb-4 leading-relaxed">{dev.info}</p>
+                      <p className="text-sm text-gray-200 mb-4 leading-relaxed">{dev.info}</p>
                       
                       {(dev.socials.github || dev.socials.linkedin || dev.socials.email) && (
                         <div className="flex gap-3 mt-2">
