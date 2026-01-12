@@ -1,8 +1,25 @@
-[*.{js,jsx,mjs,cjs,ts,tsx,mts,cts,vue,css,scss,sass,less,styl}]
+# EditorConfig is awesome: https://EditorConfig.org
+
+# Top-most EditorConfig file
+root = true
+
+# All files
+[*]
 charset = utf-8
-indent_size = 2
-indent_style = space
+end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
-end_of_line = lf
-max_line_length = 100
+
+# Code files
+[*.{js,jsx,ts,tsx,json,css,scss}]
+indent_style = space
+indent_size = 2
+
+# Markdown files
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = off
+
+# Package files
+[package.json]
+indent_size = 2
