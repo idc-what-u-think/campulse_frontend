@@ -173,9 +173,11 @@ export const authAPI = {
     getCurrentUser: async () => { },
 };
 
-export default {
-    tasks: tasksAPI,
-    opportunities: opportunitiesAPI,
-    tutors: tutorsAPI,
-    auth: authAPI
+const api = {
+  tasks: tasksAPI,
+  opportunities: opportunitiesAPI,
+  tutors: tutorsAPI,
+  auth: authAPI
 };
+
+export default api;
