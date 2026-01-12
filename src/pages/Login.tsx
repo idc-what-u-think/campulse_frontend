@@ -503,7 +503,7 @@ const Login: React.FC<LoginProps> = ({
             fontSize: isDesktop ? '1rem' : '0.875rem'
           }}>
             <p style={{ margin: 0 }}>
-              Don't have an account?{' '}
+              Don&apos;t have an account?
               <a
                 href="#"
                 onClick={(e) => {
