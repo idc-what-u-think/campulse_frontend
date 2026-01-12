@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Github, Linkedin, Mail, Instagram, MessageCircle, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 const CampulseLanding: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'home' | 'team'>('home');
@@ -210,11 +211,13 @@ const CampulseLanding: React.FC = () => {
               </p>
               
               <div style={{ marginBottom: '4rem', maxWidth: '36rem', margin: '0 auto 4rem' }}>
-                <img 
-                  src="/images/logo.png" 
-                  alt="Campulse Logo" 
-                  style={{ width: '100%', borderRadius: '1rem', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)' }}
-                />
+                <Image 
+                   src="/images/logo.png" 
+                   alt="Campulse Logo" 
+                   width={576}
+                   height={576}
+                  style={{ width: '100%', height: 'auto', borderRadius: '1rem', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)' }}
+/>
               </div>
             </div>
           </section>
@@ -546,11 +549,13 @@ const CampulseLanding: React.FC = () => {
                     border: '4px solid rgba(34, 197, 94, 0.3)',
                     boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
                   }}>
-                    <img 
-                      src="/images/creator.jpg" 
-                      alt={teamMembers.creator.name}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    />
+                    <Image 
+  src="/images/creator.jpg" 
+  alt={teamMembers.creator.name}
+  width={128}
+  height={128}
+  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+/>
                   </div>
                   <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem', color: '#fff' }}>{teamMembers.creator.name}</h3>
                   <p style={{ fontSize: '1rem', color: '#e5e7eb', lineHeight: '1.75' }}>{teamMembers.creator.info}</p>
@@ -606,11 +611,13 @@ const CampulseLanding: React.FC = () => {
                         border: '4px solid rgba(245, 158, 11, 0.3)',
                         boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
                       }}>
-                        <img 
-                          src={`/images/${dev.image}`}
-                          alt={dev.name}
-                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                        />
+                        <Image 
+  src={`/images/${dev.image}`}
+  alt={dev.name}
+  width={96}
+  height={96}
+  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+/>
                       </div>
                       <h3 style={{ fontSize: '1.125rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#fff' }}>{dev.name}</h3>
                       <p style={{ fontSize: '0.875rem', color: '#e5e7eb', marginBottom: '1rem', lineHeight: '1.75' }}>{dev.info}</p>
