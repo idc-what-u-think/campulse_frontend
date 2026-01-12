@@ -59,8 +59,8 @@ const Opportunities: React.FC<OpportunitiesProps> = ({
   const [bookmarkedIds, setBookmarkedIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    loadOpportunities();
-  }, []);
+  loadOpportunities();
+}, [loadOpportunities]);
 
   useEffect(() => {
     if (filter === 'all') {
