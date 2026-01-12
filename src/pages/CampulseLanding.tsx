@@ -206,7 +206,7 @@ const CampulseLanding: React.FC = () => {
                 </span>
               </h1>
               <p style={{ fontSize: 'clamp(1.25rem, 3vw, 1.5rem)', color: '#9ca3af', marginBottom: '2.5rem', lineHeight: '1.6' }}>
-                UniIlorin's Student Campus Operating System
+                UniIlorin&apos;s Student Campus Operating System
               </p>
               
               <div style={{ marginBottom: '4rem', maxWidth: '36rem', margin: '0 auto 4rem' }}>
